@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>О проекте — ВТБ Благо</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #f6f7fb; color: #2f3640; }
+    header { background: #004080; color: white; padding: 12px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .nav-container { width: 85%; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    nav a { color: white; text-decoration: none; margin-left: 15px; font-weight: bold; }
+    nav a:hover { text-decoration: underline; }
+    .logo { font-size: 1.5em; font-weight: bold; }
+    .container { width: 85%; max-width: 900px; margin: 40px auto; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+    h1 { font-size: 2em; color: #004080; margin-bottom: 20px; }
+    p { font-size: 1.1em; line-height: 1.6; margin-bottom: 15px; }
+    a.btn { display: inline-block; margin-top: 20px; color: white; background-color: #004080; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold; transition: background 0.2s; }
+    a.btn:hover { background-color: #0055c1; }
+         .login-btn {
+  display: inline-block;
+  padding: 8px 15px;
+  margin-left: 15px;
+  background-color: #ffffff;
+  color: #004080;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background 0.2s;
+ }
+  .login-btn:hover {
+   background-color: #f1f1f1;
+ }
+
+  .logo-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .logo-img {
+    height: 50px;
+    width: 165px;
+    object-fit: cover;
+    border-radius: 6px;
+  }
+  </style>
+</head>
+<body>
+{% load static %}
+<header>
+  <div class="nav-container">
+
+    <div class="logo-box">
+      <img src="{% static 'img/logo.png' %}" class="logo-img">
+    </div>
+
+    <nav>
+      <a href="{% url 'index' %}">Главная</a>
+      <a href="{% url 'projects' %}">Проекты</a>
+      <a href="{% url 'about' %}">О платформе</a>
+      <a href="{% url 'help' %}">Нужна помощь?</a>
+      <a href="{% url 'login' %}" class="login-btn">Вход</a>
+    </nav>
+
+  </div>
+</header>
+
+<div class="container">
+  <h1>О платформе</h1>
+  <p><strong>ВТБ Благо</strong> — это благотворительная онлайн-платформа, созданная для объединения неравнодушных людей. Здесь каждый может поддержать социальные, медицинские и образовательные инициативы.</p>
+  <p>Все проекты проходят модерацию и имеют прозрачную систему учёта пожертвований. Каждая внесённая сумма отображается в общей сумме собранных средств.</p>
+  <p>Мы верим, что даже небольшие пожертвования от чистого сердца способны менять судьбы.</p>
+  <a href="{% url 'index' %}" class="btn">На главную</a>
+</div>
+</body>
+</html>
