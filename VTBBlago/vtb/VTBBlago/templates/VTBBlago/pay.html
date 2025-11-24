@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Пожертвовать — {{ project.title }}</title>
+  <style>
+  body {
+
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f6f7fb;
+      color: #2f3640;
+    }
+
+    header {
+      background: #004080;
+      color: white;
+      padding: 12px 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .nav-container {
+      width: 85%;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-img {
+      height: 50px;
+      width: 165px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 15px;
+      font-weight: bold;
+    }
+
+    nav a:hover { text-decoration: underline; }
+
+    .login-btn {
+      display: inline-block;
+      padding: 8px 15px;
+      margin-left: 15px;
+      background-color: #ffffff;
+      color: #004080;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: background 0.2s;
+    }
+
+    .login-btn:hover {
+      background-color: #f1f1f1;
+    }
+
+    .form-box { width: 400px; margin: 80px auto; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+    input, textarea { width: 100%; padding: 10px; margin-top: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 1em; }
+    button { margin-top: 15px; width: 100%; padding: 10px; background: #004080; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; transition: background 0.2s; }
+    button:hover { background: #0055c1; }
+    .error { color: red; }
+    label { display: flex; align-items: center; margin-top: 10px; }
+         .login-btn {
+  display: inline-block;
+  padding: 8px 15px;
+  margin-left: 15px;
+  background-color: #ffffff;
+  color: #004080;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background 0.2s;
+ }
+
+  </style>
+</head>
+<body>
+{% load static %}
+<header>
+  <div class="nav-container">
+
+    <div class="logo-box">
+      <img src="{% static 'img/logo.png' %}" class="logo-img">
+    </div>
+
+    <nav>
+      <a href="{% url 'index' %}">Главная</a>
+      <a href="{% url 'projects' %}">Проекты</a>
+      <a href="{% url 'about' %}">О платформе</a>
+      <a href="{% url 'help' %}">Нужна помощь?</a>
+      <a href="{% url 'login' %}" class="login-btn">Вход</a>
+    </nav>
+
+  </div>
+</header>
+
+<div class="form-box">
+  <h2>Пожертвование в проект: {{ project.title }}</h2>
+  {% if error %}<p class="error">{{ error }}</p>{% endif %}
+  <form method="post">
+    {% csrf_token %}
+    <input type="email" name="email" placeholder="Email (необязательно)">
+    <input type="password" name="password" placeholder="Пароль (необязательно)">
+    <label>
+      <input type="checkbox" name="anonymous" id="anonymous" onchange="toggleAnonymous(this)">
+      Анонимное пожертвование
+    </label>
+    <input type="text" name="card_number" maxlength="16" placeholder="Номер карты" pattern="\d{16}" required>
+    <input type="text" name="expiry" maxlength="5" placeholder="ММ/ГГ" pattern="\d{2}/\d{2}" required>
+    <input type="text" name="cvv" maxlength="3" placeholder="CVV" pattern="\d{3}" required>
+    <input type="number" name="amount" step="0.01" placeholder="Сумма (₽)" required>
+    <button type="submit">Перевести</button>
+  </form>
+</div>
+
+<script>
+  function toggleAnonymous(checkbox) {
+    const email = document.querySelector('input[name="email"]');
+    const password = document.querySelector('input[name="password"]');
+    email.disabled = checkbox.checked;
+    password.disabled = checkbox.checked;
+  }
+</script>
+</body>
+</html>
