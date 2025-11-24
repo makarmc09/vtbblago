@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Главная — ВТБ Благо</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f6f7fb;
+      color: #2f3640;
+    }
+
+    header {
+      background: #004080;
+      color: white;
+      padding: 12px 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .nav-container {
+      width: 85%;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-img {
+      height: 50px;
+      width: 165px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 15px;
+      font-weight: bold;
+    }
+
+    nav a:hover { text-decoration: underline; }
+
+    .login-btn {
+      display: inline-block;
+      padding: 8px 15px;
+      margin-left: 15px;
+      background-color: #ffffff;
+      color: #004080;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: background 0.2s;
+    }
+
+    .login-btn:hover {
+      background-color: #f1f1f1;
+    }
+
+    section {
+      background: linear-gradient(to bottom, #e0f7fa, #ffffff);
+      text-align: center;
+      padding: 40px 20px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    section > .card {
+      max-width: 800px;
+      width: 100%;
+      background: rgba(255,255,255,0.95);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+      margin-bottom: 20px;
+    }
+
+    h1 { font-size: 2em; color: #004080; margin-bottom: 12px; }
+    p { font-size: 1.05em; line-height: 1.6; margin: 0; }
+    ul { text-align: left; font-size: 1.05em; margin-top: 14px; padding-left: 20px; }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 20px;
+      background: #004080;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background 0.18s, transform 0.12s;
+    }
+
+    .btn:hover { background: #0055c1; transform: translateY(-2px); }
+
+    .total-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255,255,255,0.98);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+      margin: 18px 0 40px 0;
+      width: calc(100% - 40px);
+      max-width: 800px;
+    }
+
+    .total-box h2 { margin: 0; color: #004080; font-size: 1.2em; }
+    .results-card {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .results-top {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      text-align: left;
+    }
+
+    .results-photos {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      align-items: stretch;
+    }
+
+    .results-photos img {
+      width: 48%;
+      height: 320px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      object-fit: cover;
+      transition: transform 0.18s, box-shadow 0.18s;
+    }
+
+    .results-photos img:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+    }
+
+    .photo-caption {
+      font-size: 0.95em;
+      color: #4a4f55;
+      margin-top: 8px;
+      text-align: center;
+    }
+
+    @media (max-width: 720px) {
+      .results-photos {
+        flex-direction: column;
+      }
+      .results-photos img {
+        width: 100%;
+        height: 220px;
+      }
+      .nav-container { width: 94%; }
+      section { padding: 24px 12px 20px 12px; }
+    }
+  </style>
+</head>
+<body>
+{% load static %}
+
+<header>
+  <div class="nav-container">
+    <div class="logo-box">
+      <img src="{% static 'img/logo.png' %}" class="logo-img">
+    </div>
+
+    <nav>
+      <a href="{% url 'index' %}">Главная</a>
+      <a href="{% url 'projects' %}">Проекты</a>
+      <a href="{% url 'about' %}">О платформе</a>
+      <a href="{% url 'help' %}">Нужна помощь?</a>
+      <a href="{% url 'login' %}" class="login-btn">Вход</a>
+    </nav>
+  </div>
+</header>
+
+<section>
+  <div class="card">
+    <h1><strong>Фонд помощи</strong></h1>
+    <p><em>Мы объединяем силы, чтобы помогать тем, кто в этом нуждается.</em> Каждое пожертвование — это вклад в светлое будущее.</p>
+    <ul>
+      <li>Прозрачное использование средств</li>
+      <li>Сохранение истории пожертвований</li>
+      <li>Ежедневные отчёты</li>
+      <li>На сайте можно не только пожертвовать, но и попросить о помощи</li>
+    </ul>
+  </div>
+
+  <div class="total-box">
+    <h2>Собрано всего: {{ total }} ₽</h2>
+    <a href="{% url 'projects' %}" class="btn">Смотреть проекты</a>
+  </div>
+
+  <div style="width:100%; max-width:800px; background: rgba(255,255,255,0.95); padding:30px; border-radius:15px; box-shadow:0 8px 20px rgba(0,0,0,0.06); margin-bottom:40px;">
+    <h2>Пожертвования за последние 7 дней</h2>
+    <canvas id="donationChart" width="550" height="300"></canvas>
+  </div>
+
+  <div class="card results-card">
+    <div class="results-top">
+      <h1><strong>Результаты</strong></h1>
+      <p>Мы помогли приюту: купили корм, отремонтировали вольеры и оплатили ветеринарные услуги. СБОР ЗАКРЫТ. Общая стоимость - 30 000 рублей. <br/> Отчёты и фото доступны ниже.</p>
+
+    </div>
+
+    <div class="results-photos">
+      <div style="flex:1;">
+        <img src="https://iili.io/f3AxS9t.th.jpg" alt="Результат 1">
+      </div>
+      <div style="flex:1;">
+        <img src="https://iili.io/f3Azje9.th.jpg" alt="Результат 2">
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const chartData = {{ chart_data|safe }};
+const labels = chartData.map(item => item.day);
+const data = chartData.map(item => item.total);
+
+const ctx = document.getElementById('donationChart').getContext('2d');
+new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Сумма пожертвований (₽)',
+            data: data,
+            borderColor: 'rgb(75, 192, 192)',
+            backgroundColor: 'rgba(75, 192, 192, 0.18)',
+            fill: true,
+            tension: 0.3
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: { y: { beginAtZero: true } }
+    }
+});
+</script>
+
+</body>
+</html>

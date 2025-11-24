@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Вход — ВТБ Благо</title>
+  <style>
+  body {
+
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f6f7fb;
+      color: #2f3640;
+    }
+
+    header {
+      background: #004080;
+      color: white;
+      padding: 12px 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .nav-container {
+      width: 85%;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-img {
+      height: 50px;
+      width: 165px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 15px;
+      font-weight: bold;
+    }
+
+    nav a:hover { text-decoration: underline; }
+
+    .login-btn {
+      display: inline-block;
+      padding: 8px 15px;
+      margin-left: 15px;
+      background-color: #ffffff;
+      color: #004080;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: background 0.2s;
+    }
+
+    .login-btn:hover {
+      background-color: #f1f1f1;
+    }
+
+
+    section {
+      background: linear-gradient(to bottom, #e0f7fa, #ffffff);
+      text-align: center;
+      padding: 50px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .form-box {
+      max-width: 400px;
+      width: 100%;
+      background: rgba(255,255,255,0.95);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    h1 { color: #004080; margin-bottom: 20px; }
+
+    input {
+      width: 90%;
+      padding: 12px;
+      margin-top: 12px;
+      border: 1px solid #ccd;
+      border-radius: 6px;
+      font-size: 1em;
+    }
+
+    .link {
+      margin-top: 15px;
+      font-size: 0.95em;
+    }
+    .link a { color: #004080; text-decoration: none; }
+    .link a:hover { text-decoration: underline; }
+     .login-btn {
+  display: inline-block;
+  padding: 8px 15px;
+  margin-left: 15px;
+  background-color: #ffffff;
+  color: #004080;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background 0.2s;
+ }
+
+  </style>
+</head>
+<body>
+{% load static %}
+<header>
+  <div class="nav-container">
+
+    <div class="logo-box">
+      <img src="{% static 'img/logo.png' %}" class="logo-img">
+    </div>
+
+    <nav>
+      <a href="{% url 'index' %}">Главная</a>
+      <a href="{% url 'projects' %}">Проекты</a>
+      <a href="{% url 'about' %}">О платформе</a>
+      <a href="{% url 'help' %}">Нужна помощь?</a>
+      <a href="{% url 'login' %}" class="login-btn">Вход</a>
+    </nav>
+
+  </div>
+</header>
+
+<section>
+  <div class="form-box">
+    <h1>Вход</h1>
+
+    <form method="post">
+      {% csrf_token %}
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="password" name="password" placeholder="Пароль" required>
+      <button class="btn" type="submit">Войти</button>
+    </form>
+
+    <div class="link">
+      Нет аккаунта?
+      <a href="{% url 'register' %}">Создать</a>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

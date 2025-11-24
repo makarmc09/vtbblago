@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Запрос помощи — ВТБ Благо</title>
+<style>
+body { font-family: Arial; background: #f6f7fb; color: #2f3640; }
+.form-box {
+  width: 400px; margin: 80px auto; background: white; padding: 25px;
+  border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+input, textarea {
+  width: 100%; padding: 10px; margin-top: 10px;
+  border: 1px solid #ccc; border-radius: 6px;
+}
+button {
+  margin-top: 15px; width: 100%; padding: 10px;
+  background: #004080; color: white; border: none;
+  border-radius: 6px; font-weight: bold; cursor: pointer;
+  transition: 0.2s;
+}
+button:hover { background: #0055c1; }
+.success { color: green; text-align: center; margin-top: 15px; }
+.error { color: red; text-align: center; margin-top: 15px; }
+h2 { text-align: center; }
+       .login-btn {
+  display: inline-block;
+  padding: 8px 15px;
+  margin-left: 15px;
+  background-color: #ffffff;
+  color: #004080;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background 0.2s;
+ }
+  .login-btn:hover {
+   background-color: #f1f1f1;
+ }
+
+  .logo-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .logo-img {
+    height: 50px;
+    width: 165px;
+    object-fit: cover;
+    border-radius: 6px;
+  }
+    header {
+    background: #004080;
+    color: white;
+    padding: 12px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .nav-container {
+    width: 85%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+
+  .logo-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .logo-img {
+    height: 50px;
+    width: 165px;
+    object-fit: cover;
+    border-radius: 6px;
+  }
+
+  .logo-text {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+
+  nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 15px;
+    font-weight: bold;
+  }
+
+  nav a:hover { text-decoration: underline; }
+
+
+</style>
+</head>
+<body>
+{% load static %}
+<header>
+  <div class="nav-container">
+
+    <div class="logo-box">
+      <img src="{% static 'img/logo.png' %}" class="logo-img">
+    </div>
+
+    <nav>
+      <a href="{% url 'index' %}">Главная</a>
+      <a href="{% url 'projects' %}">Проекты</a>
+      <a href="{% url 'about' %}">О платформе</a>
+      <a href="{% url 'help' %}">Нужна помощь?</a>
+      <a href="{% url 'login' %}" class="login-btn">Вход</a>
+    </nav>
+
+  </div>
+</header>
+<div class="form-box">
+  <h2>Запрос помощи</h2>
+
+  {% if success %}
+    <p class="success">Ваш запрос отправлен! Мы свяжемся с вами.</p>
+  {% else %}
+
+    {% if error %}
+      <p class="error">{{ error }}</p>
+    {% endif %}
+
+    <form method="post">
+      {% csrf_token %}
+
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="password" name="password" placeholder="Пароль" required>
+
+      <textarea name="message" rows="5" placeholder="Опишите вашу ситуацию..." required></textarea>
+
+      <input type="hidden" name="help_type" value="{{ help_type }}">
+
+      <button type="submit">Отправить запрос</button>
+    </form>
+
+  {% endif %}
+</div>
+
+</body>
+</html>
